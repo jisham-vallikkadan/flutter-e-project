@@ -16,7 +16,7 @@ class Registrationpage extends StatelessWidget {
   TextEditingController emailcontroler = TextEditingController();
   TextEditingController numbercontroler = TextEditingController();
   TextEditingController passwordcontroler = TextEditingController();
-  TextEditingController testconroler = TextEditingController();
+
 
 
   @override
