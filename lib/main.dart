@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:studioprojetcs/screens/admin/adminhome.dart';
 import 'package:studioprojetcs/screens/register.dart';
 import 'package:studioprojetcs/service/provider.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(create: (context)=>Eprovider(),
       child: MaterialApp(
-        home: Registrationpage(),
+        home: Admin_home(),
       ),
     );
   }
