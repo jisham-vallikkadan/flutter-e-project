@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
+import '../service/provider.dart';
 import '../widgets/button.dart';
 import '../widgets/textfield.dart';
 import '../widgets/txt.dart';
@@ -16,8 +18,6 @@ class Registrationpage extends StatelessWidget {
   TextEditingController emailcontroler = TextEditingController();
   TextEditingController numbercontroler = TextEditingController();
   TextEditingController passwordcontroler = TextEditingController();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +108,8 @@ class Registrationpage extends StatelessWidget {
                     Fluttertoast.showToast(msg: 'enter values');
                     print('dfshf');
                   } else {
-                    registeruser({
+                    Provider.of<Eprovider>(context,listen: false)
+                        .registeruser({
                       'Ufristname': firstnamecontroler.text,
                       'Ulastname': lastnamecontroler.text,
                       'email': emailcontroler.text,
@@ -151,22 +152,5 @@ class Registrationpage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future registeruser(Map<String, dynamic> data, BuildContext) async {
-    var url = 'http://192.168.43.147:3000/register/';
-
-    var response = await http.post(Uri.parse(url), body: data);
-
-    var res = json.decode(response.body);
-    print(res);
-    Fluttertoast.showToast(msg: res['message']);
-    if (res['success'] == true) {
-      Navigator.push(
-          BuildContext,
-          MaterialPageRoute(
-            builder: (context) => Loginpage(),
-          ));
-    }
   }
 }

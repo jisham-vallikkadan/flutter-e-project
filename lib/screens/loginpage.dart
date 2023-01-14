@@ -2,6 +2,8 @@ import 'dart:convert';
 
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:studioprojetcs/service/provider.dart';
 
 import '../widgets/button.dart';
 import '../widgets/textfield.dart';
@@ -78,11 +80,11 @@ class Loginpage extends StatelessWidget {
             ),
             Button(
               click: () {
-                // logindata({
-                //   'username': emailcontroler.text,
-                //   'password': passwrordcontroler.text,
-                // });
-                getuser();
+
+                Provider.of<Eprovider>(context,listen: false).Login({
+                  'email':emailcontroler.text,
+                  'password':passwrordcontroler.text,
+                }, context);
               },
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(30)),
@@ -111,20 +113,5 @@ class Loginpage extends StatelessWidget {
     );
   }
 
-  Future logindata(Map<String, dynamic> data) async {
-    var url = 'http://192.168.43.84:3000/login';
 
-    var respons = await http.post(Uri.parse(url), body: data);
-
-    var body = jsonDecode(respons.body);
-    print(body);
-  }
-  Future getuser()async {
-    var url='http://192.168.43.147:3000/register/view_allusers';
-    var responce=await http.get(Uri.parse(url));
-    if(responce.statusCode==200){
-      var body=jsonDecode(responce.body);
-      print(body);
-    }
-  }
 }
